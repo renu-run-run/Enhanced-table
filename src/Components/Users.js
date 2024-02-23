@@ -79,22 +79,74 @@ const Users = () => {
     setShowModal(!showModal);
   };
 
-  const exportToExcel = () => {
-    const dataToExport = userList.map(user => ({
-       Photo: user.picture.large,
-       Name: user.name.first,
-       Age: user.dob.age,
-       Gender: user.gender,
-       Email: user.email
-    }));
+//   const exportToExcel = () => {
+//     const dataToExport = userList.map(user => ({
+//        Photo: user.picture.large,
+//        Name: user.name.first,
+//        Age: user.dob.age,
+//        Gender: user.gender,
+//        Email: user.email
+//     }));
 
-    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "User Data");
+//     const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+//     const workbook = XLSX.utils.book_new();
+//     XLSX.utils.book_append_sheet(workbook, worksheet, "User Data");
 
-    // Export the workbook as an .xlsx file
-    XLSX.writeFile(workbook, "user_data.xlsx");
- };
+//     // Export the workbook as an .xlsx file
+//     XLSX.writeFile(workbook, "user_data.xlsx");
+//  };
+
+const exportToExcel = () => {
+
+  const filteredAndSortedData = userList
+    .filter((elem) => {
+      if (typeof search === 'string' && search.trim() !== "") {
+        return elem.name.first.toLowerCase().includes(search.trim().toLowerCase());
+      }
+      return true;
+    })
+    .sort((a, b) => {
+      return isAscending ? a.dob.age - b.dob.age : b.dob.age - a.dob.age;
+    });
+
+ 
+  const dataToExport = filteredAndSortedData.map((user) => {
+    const rowData = {};
+    Object.keys(columnsVisibility).forEach((column) => {
+      if (columnsVisibility[column]) {
+        switch (column) {
+          case "photo":
+            rowData["Photo"] = user.picture.large;
+            break;
+          case "name":
+            rowData["Name"] = user.name.first;
+            break;
+          case "age":
+            rowData["Age"] = user.dob.age;
+            break;
+          case "gender":
+            rowData["Gender"] = user.gender;
+            break;
+          case "email":
+            rowData["Email"] = user.email;
+            break;
+          default:
+            break;
+        }
+      }
+    });
+    return rowData;
+  });
+
+  const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "User Data");
+
+
+  XLSX.writeFile(workbook, "user_data.xlsx");
+};
+
+
 
 
    const selectPageH =(selectPage) =>{
