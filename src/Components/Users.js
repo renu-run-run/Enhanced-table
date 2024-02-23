@@ -28,6 +28,7 @@ const ColumnVisibilityModal = ({ columnsVisibilityprop, toggleColumnVisibility, 
             </li>
           ))}
         </ul>
+        <button style={{padding:"0.3rem 1rem 0.3rem 1rem",marginLeft:"10%",backgroundColor:"rgb(56, 156, 238)",color:"white",fontWeight:"bold"}} onClick={closeModal}>confirm</button>
       </div>
     </div>
   );

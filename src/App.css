@@ -113,15 +113,16 @@ img{
  }
  .modal-content{
    /* width: 90%; */
-   width: 20%;
-   background-color: rgb(221, 232, 243);
+   width: 15%;
+   /* background-color: rgb(221, 232, 243); */
+   background-color: white;
    padding: 0.5rem;
    position: absolute;
-   margin: 30px 5% 0 5%; /* Adjust margin for smaller screens */
+   margin: 75px 22% 0 5%; /* Adjust margin for smaller screens */
    top: 0;
    right: 0;
    z-index: 100;
-   box-shadow: 0px 0px 10px 10px rgb(247, 247, 247);
+   box-shadow: 0px 0px 2px 2px rgb(207, 207, 207);
  }
  
  @media screen and (max-width: 600px) {
