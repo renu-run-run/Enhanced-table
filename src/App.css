@@ -46,8 +46,9 @@
    font-size: 12px;
    border: 1px solid rgb(151, 182, 188);
 }
-.main-table{
-   width: 80%;
+.main-table {
+   width: 100%; /* Ensure the table takes up full width */
+   max-width: 100%; /* Ensure the table does not exceed the container width */
 }
 .main-input{
   
@@ -122,16 +123,78 @@ img{
    z-index: 100;
    box-shadow: 0px 0px 10px 10px rgb(247, 247, 247);
  }
- @media only screen and (max-width: 768px) {
-   .main {
-     width: 90%;
+ 
+ @media screen and (max-width: 600px) {
+   table, thead, tbody, th, td, tr {
+     display: block;
    }
-   .main-table {
-      width: 100%; /* Adjusting the width to occupy full width */
-      overflow-x: auto; /* Adding horizontal scroll if needed */
-    }
-   .nav-input,
-   .nav-button {
+   table {
      width: 100%;
+     border-collapse: collapse; 
    }
- }
+   thead {
+     display: flex; 
+     flex-wrap: wrap; 
+   }
+   th {
+     width: 50%; 
+     box-sizing: border-box; 
+     padding: 8px
+   }
+   tbody {
+     width: 100%;
+     
+   }
+   tr { 
+     margin: 0 0 1rem 0; 
+     border: 1px solid #ccc; 
+   }
+   td {
+     border: none;
+     border-bottom: 1px solid #ddd;
+     position: relative;
+     padding-left: 50%;
+     overflow: auto;
+     text-align: left; 
+   }
+   td:before {
+     position: absolute;
+     top: 0;
+     left: 6px;
+     width: 45%;
+     padding-right: 5px;
+     white-space: nowrap;
+     content: attr(data-label); 
+     font-weight: bold;
+   }
+   .nav-input {
+      margin: 0.5rem 1rem; 
+      width: 100%;
+      display: block; 
+    }
+    .nav-button {
+      margin: 4rem 0; 
+      width: 100%;
+      z-index: 100;
+      display: block; 
+    }
+   .pagination {
+     flex-direction: row; 
+     align-items: center;
+   }
+   .modal-content{
+      /* width: 90%; */
+      width: 50%;
+      background-color: rgb(221, 232, 243);
+      padding: 0.5rem;
+      position: absolute;
+      margin: 30px 5% 0 5%; 
+      top: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0px 0px 10px 10px rgb(247, 247, 247);
+    }
+}
+
+
+ 
