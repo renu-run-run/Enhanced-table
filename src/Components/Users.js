@@ -55,9 +55,47 @@ const Users = () => {
     //   dispatch(toggleColumnVisibility(column));
     // };
  
+    // useEffect(() => {
+    //   // Get columnsVisibility from local storage
+    //   let persistedColumnsVisibility = JSON.parse(localStorage.getItem("columnsVisibility"));
+    
+    //   // Check if persistedColumnsVisibility is null or undefined
+    //   if (!persistedColumnsVisibility) {
+    //     // If not present, initialize it with default values
+    //     persistedColumnsVisibility = {
+    //       photo: true,
+    //       name: true,
+    //       age: true,
+    //       email: true,
+    //       register_date: true, // Add register_date column
+    //     };
+    
+    //     // Save the initialized columnsVisibility to local storage
+    //     localStorage.setItem("columnsVisibility", JSON.stringify(persistedColumnsVisibility));
+    //   } else {
+    //     // If "register_date" column is missing, add it
+    //     if (!persistedColumnsVisibility.hasOwnProperty("register_date")) {
+    //       persistedColumnsVisibility["register_date"] = true;
+    
+    //       // Update local storage with the added "register_date" column
+    //       localStorage.setItem("columnsVisibility", JSON.stringify(persistedColumnsVisibility));
+    //     }
+    //   }
+    
+    //   // Dispatch action to update Redux state with the modified columnsVisibility
+    //   dispatch({ type: "RENAME_COLUMN", payload: { oldColumnName: "register date", newColumnName: "register_date" } });
+    //   // eslint-disable-next-line
+    // }, []);
+    
     useEffect(() => {
       // Get columnsVisibility from local storage
       let persistedColumnsVisibility = JSON.parse(localStorage.getItem("columnsVisibility"));
+    
+      // Remove "gender" column if present
+      if (persistedColumnsVisibility && persistedColumnsVisibility.hasOwnProperty("gender")) {
+        delete persistedColumnsVisibility["gender"];
+        localStorage.setItem("columnsVisibility", JSON.stringify(persistedColumnsVisibility));
+      }
     
       // Check if persistedColumnsVisibility is null or undefined
       if (!persistedColumnsVisibility) {
@@ -87,7 +125,6 @@ const Users = () => {
       // eslint-disable-next-line
     }, []);
     
-  
    useEffect(()=>{
       axios.get('https://randomuser.me/api/?results=20').then(
         (response)=>{
