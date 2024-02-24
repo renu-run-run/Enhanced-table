@@ -9,8 +9,8 @@ const initialState = {
     photo: true,
     name: true,
     age: true,
-    gender: true,
     email: true,
+    date: true,
   },
 };
 

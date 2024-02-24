@@ -1,50 +1,71 @@
 
 .container{
+   width: 100%;
    display: flex;
    align-items: center;
    justify-content: center; 
 }
+.customer{
+   width: 100%;
+   display: flex;
+   align-items: center;
+   
+}
+.customer > div{
+  
+   justify-content:space-between;
+   align-items: center;
+}
+
+
 .main{
    margin-top: 2rem;
-   background-color: rgb(255, 255, 255);
-   width: 60%; 
-   
+   background-color: rgb(233, 233, 233);
+   width: 100%; 
+   border-radius: 10px;
    max-width: 1200px; 
    height: auto;
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: center; 
-   box-shadow: 5px 5px 10px rgb(188, 188, 188);
+   box-shadow: 5px 5px 10px rgb(225, 225, 225);
 }
 
 .nav{
    width: 100%;
    height: 50px;
    display: flex;
-  
+   border-radius: 10px;
    /* background-color: rgb(195, 219, 234); */
-   background-color: rgb(24, 66, 94);
+   background-color: rgb(240, 240, 240);
   
 }
 .nav-input{
-   margin: 5px 0 0 15px;
+   margin: 10px 0 0 15px;
    width:50% ;
+  
 }
 .nav-button{
-   margin: 5px 0 0 15px;
+   margin: 10px 0 0 15px;
    width: 50%;
    display: flex;
    justify-content: space-evenly; 
 }
+.nav input{
+   border: none;
+   border-radius: 5px;
+   box-shadow: 0 0 2px rgb(196, 196, 196);
+}
 .nav button {
    width: 100px;
    height: 35px;
-   background-color: rgb(56, 156, 238);
-   color: white;
-   font-weight: bold;
+   background-color: rgb(255, 255, 255);
+   color: rgb(90, 90, 90);
+   border-radius: 5px;
    font-size: 12px;
-   border: 1px solid rgb(151, 182, 188);
+   border: none;
+   box-shadow:0 0 2px rgb(196, 196, 196) ;
 }
 .main-table {
    width: 100%; /* Ensure the table takes up full width */
@@ -62,21 +83,26 @@
 }
 .list-group-item{
    margin: 1rem;
-   background-color: rgb(221, 232, 243);
+   background-color: rgb(255, 255, 255);
 }
 .list-group-item-odd{
    margin: 1rem;
-   background-color: rgb(247, 247, 247)
+   background-color: rgb(255, 255, 255)
 }
 .table-head{
-   border-bottom: 1px black;
+   border-bottom: 1px solid black;
    color:rgb(24, 66, 94) ;
-   background-color: rgb(164, 187, 211);
+   background-color: rgb(250, 250, 250);
+}
+tr{
+   border: 2px solid black;
 }
 th{
    padding: 0.5rem 2.5rem 0.5rem 2.5rem;
 }
-
+td{
+   line-height: 0%;
+}
 .p-3{
    color: rgb(41, 94, 140);
    padding: 0rem 2.5rem 0rem 2.5rem;
@@ -84,6 +110,7 @@ th{
 img{
    width: 50px;
    height: 50px;
+   border-radius: 50%;
 }
 .pagination{
    display: flex;
@@ -107,14 +134,15 @@ img{
  }
 .s{
    z-index: 100;
-   background-color:  rgb(164, 187, 211);
-   
+   background-color:  rgb(255, 255, 255);
+   box-shadow: 0 0 5px rgb(255, 255, 255);
    cursor: pointer;
  }
  .modal-content{
    /* width: 90%; */
    width: 15%;
    /* background-color: rgb(221, 232, 243); */
+   border-radius: 10px;
    background-color: white;
    padding: 0.5rem;
    position: absolute;
@@ -126,6 +154,9 @@ img{
  }
  
  @media screen and (max-width: 600px) {
+   .main{
+      width: 90%;
+   }
    table, thead, tbody, th, td, tr {
      display: block;
    }
