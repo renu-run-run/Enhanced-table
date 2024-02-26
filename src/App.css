@@ -315,7 +315,7 @@ img{
     background-color: white;
    }
    .nav{
-      
+      border-radius: 0%;
       background-color: rgb(1, 99, 160);
       box-shadow: 0 0 10px gray;
    }
