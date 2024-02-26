@@ -154,9 +154,11 @@ img{
  }
  
  @media screen and (max-width: 1025px) {
-   .main{
-      width: 100%;
-   }
+  .main{
+    width: 100%;
+    margin-top: 0%;
+    background-color: white;
+ }
    table, thead, tbody, th, td, tr {
      display: block;
    }
@@ -165,7 +167,7 @@ img{
      border-collapse: collapse; 
    }
    thead {
-     margin-top: 20%;
+     margin-top: 10%;
    
      position: relative;
      display: flex; 
@@ -208,6 +210,7 @@ img{
    .nav{
       background-color: rgb(1, 99, 160);
       box-shadow: 0 0 10px gray;
+      border-radius: 0%;
    }
    .nav-input {
       margin: 0.5rem 1rem; 
@@ -216,6 +219,7 @@ img{
       position: absolute;
     }
     .nav input{
+      
       width: 100%;
     }
     .customer img{
@@ -248,7 +252,7 @@ img{
       background-color: rgb(221, 232, 243);
       padding: 0.5rem;
       position: absolute;
-      margin:  30% 5% 0 5%;
+      margin:  12% 5% 0 5%;
       top: 0;
       right: 0;
       z-index: 1000;
