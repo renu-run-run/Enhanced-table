@@ -12,11 +12,14 @@
    
 }
 .customer > div{
-  
    justify-content:space-between;
    align-items: center;
 }
+.customer > img{
+  width: 20% !important;
+  height: 20% !important;
 
+ }
 
 .main{
    margin-top: 2rem;
@@ -190,7 +193,7 @@ img{
    th {
      width: 100%; 
      box-sizing: border-box; 
-     font-size: 8px;
+     font-size: 7px;
    }
    tbody {
       width: 100%;
@@ -250,7 +253,7 @@ img{
       box-shadow: 0 0 10px gray;
       color: white;
       font-weight: bold;
-      font-size: 10px;
+      font-size: 7px;
     }
    .pagination {
      flex-direction: row; 
@@ -267,6 +270,12 @@ img{
       right: 0;
       z-index: 1000;
       box-shadow: 0px 0px 10px 10px rgb(247, 247, 247);
+    }
+    .s{
+      z-index: 100;
+      background-color:  rgb(183, 183, 183);
+      box-shadow: 0 0 5px rgb(255, 255, 255);
+      cursor: pointer;
     }
 }
 
@@ -293,7 +302,6 @@ img{
     margin-top: 15%;
     width: 100% !important;
     table-layout: fixed;
-   
     border-collapse: collapse; 
    }
    thead {
@@ -384,6 +392,12 @@ img{
       right: 0;
       z-index: 1000;
       box-shadow: 0px 0px 10px 10px rgb(247, 247, 247);
+    }
+    .s{
+      z-index: 100;
+      background-color:  rgb(198, 198, 198);
+      box-shadow: 0 0 5px rgb(255, 255, 255);
+      cursor: pointer;
     }
 }
 

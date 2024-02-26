@@ -279,7 +279,7 @@ const exportToExcel = () => {
               <tr className={idx % 2 === 0 ? "list-group-item" : "list-group-item-odd"} key={idx}>
                    
                     {columnsVisibility.photo && <td className="p-3">
-                      <div className="customer"><div><img src={elem.picture.large} alt="p" /></div>&nbsp; &nbsp;<div><h4> {elem.name.first}</h4><p>{elem.login.username}</p></div></div> 
+                      <div className="customer"><div><img style={{width:"30px",height:"30px"}} src={elem.picture.large} alt="p" /></div>&nbsp; &nbsp;<div><h4> {elem.name.first}</h4><p>{elem.login.username}</p></div></div> 
                     </td>}
                    
                     {columnsVisibility.name && <td className="p-3">
@@ -293,7 +293,7 @@ const exportToExcel = () => {
                     <p>{elem.email}</p>
                     </td>}
                     {columnsVisibility.register_date && <td className="p-3">
-                    <p>{new Date(elem.registered.date).getFullYear().toLocaleString()}</p>
+                    <p>{new Date(elem.registered.date).getDate()}/{new Date(elem.registered.date).getMonth().toLocaleString()}/{new Date(elem.registered.date).getFullYear()}</p>
                     </td>}
 
                   </tr>
