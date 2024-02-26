@@ -99,6 +99,7 @@ tr{
 }
 th{
    padding: 0.5rem 2.5rem 0.5rem 2.5rem;
+
 }
 td{
    line-height: 0%;
@@ -283,7 +284,7 @@ img{
    th {
      width: 50%; 
      box-sizing: border-box; 
-     
+     font-size: 12px;
    }
    tbody {
       width: 100%;
@@ -344,6 +345,7 @@ img{
       box-shadow: 0 0 10px gray;
       color: white;
       font-weight: bold;
+      font-size: 10px;
 
     }
    .pagination {
