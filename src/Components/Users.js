@@ -231,7 +231,7 @@ const exportToExcel = () => {
       <button onClick={()=>setIsAscending(!isAscending)}> {isAscending ? "Descending order" : " Ascending order"} </button>
       <button onClick={toggleModal}>Column Visibility</button>
       <button onClick={toggleAgeRangeModal}>Filter</button>
-      <button onClick={clearAgeRangeFilterHandler}> remove age Filter</button>
+      <button onClick={clearAgeRangeFilterHandler}> Remove age Filter</button>
       <button onClick={exportToExcel}>Export to Excel</button>
       </div>
       
