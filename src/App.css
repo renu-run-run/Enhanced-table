@@ -153,6 +153,105 @@ img{
    box-shadow: 0px 0px 2px 2px rgb(207, 207, 207);
  }
  
+ @media screen and (max-width: 1025px) {
+   .main{
+      width: 90%;
+   }
+   table, thead, tbody, th, td, tr {
+     display: block;
+   }
+   table {
+     width: 100%;
+     border-collapse: collapse; 
+   }
+   thead {
+     margin-top: 20%;
+   
+     position: relative;
+     display: flex; 
+     flex-wrap: wrap; 
+   }
+   th {
+     width: 50%; 
+     box-sizing: border-box; 
+     padding: 8px
+   }
+   tbody {
+     width: 100%;
+     border-radius: 50%;
+   }
+   tr { 
+     margin: 0.5rem 0 1rem 0; 
+     border: 1px solid #ccc; 
+     border-radius: 10px;
+     padding: 0.5rem;
+   }
+   td {
+     border: none;
+     /* border-bottom: 1px solid #ddd; */
+     position: relative;
+     padding-left: 50%;
+     overflow: auto;
+     text-align: left; 
+   }
+   td:before {
+     position: absolute;
+     top: 0;
+     left: 6px;
+     width: 45%;
+     
+     padding-left:10%;
+     white-space: nowrap;
+     content: attr(data-label); 
+     font-weight: bold;
+   }
+   .nav{
+      background-color: rgb(1, 99, 160);
+      box-shadow: 0 0 10px gray;
+   }
+   .nav-input {
+      margin: 0.5rem 1rem; 
+    
+      display: block; 
+      position: absolute;
+    }
+    .nav input{
+      width: 100%;
+    }
+    .nav-button {
+      position: relative;
+      margin: 4rem 0; 
+      width: 100%;
+      z-index: 100;
+     
+    }
+    .nav-button button{
+      background-color: rgb(1, 99, 160);
+      box-shadow: 0 0 10px gray;
+      color: white;
+      font-weight: bold;
+
+    }
+   
+   .pagination {
+     flex-direction: row; 
+     align-items: center;
+   }
+   .modal-content{
+      /* width: 90%; */
+      width: 50%;
+      background-color: rgb(221, 232, 243);
+      padding: 0.5rem;
+      position: absolute;
+      margin: 30px 5% 0 5%; 
+      top: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0px 0px 10px 10px rgb(247, 247, 247);
+    }
+}
+
+
  @media screen and (max-width: 600px) {
    .main{
       width: 90%;
@@ -165,6 +264,9 @@ img{
      border-collapse: collapse; 
    }
    thead {
+     margin-top: 20%;
+   
+     position: relative;
      display: flex; 
      flex-wrap: wrap; 
    }
@@ -174,41 +276,60 @@ img{
      padding: 8px
    }
    tbody {
-     width: 100%;
-     
-   }
-   tr { 
-     margin: 0 0 1rem 0; 
-     border: 1px solid #ccc; 
-   }
-   td {
-     border: none;
-     border-bottom: 1px solid #ddd;
-     position: relative;
-     padding-left: 50%;
-     overflow: auto;
-     text-align: left; 
-   }
-   td:before {
-     position: absolute;
-     top: 0;
-     left: 6px;
-     width: 45%;
-     padding-right: 5px;
-     white-space: nowrap;
-     content: attr(data-label); 
-     font-weight: bold;
+      width: 100%;
+      border-radius: 50%;
+    }
+    tr { 
+      margin: 0.5rem 0 1rem 0; 
+      border: 1px solid #ccc; 
+      border-radius: 10px;
+      padding: 0.5rem;
+    }
+    td {
+      border: none;
+      /* border-bottom: 1px solid #ddd; */
+      position: relative;
+      padding-left: 50%;
+      overflow: auto;
+      text-align: left; 
+    }
+    td:before {
+      position: absolute;
+      top: 0;
+      left: 6px;
+      width: 45%;
+      
+      padding-left:10%;
+      white-space: nowrap;
+      content: attr(data-label); 
+      font-weight: bold;
+    }
+   .nav{
+      background-color: rgb(1, 99, 160);
+      box-shadow: 0 0 10px gray;
    }
    .nav-input {
       margin: 0.5rem 1rem; 
-      width: 100%;
+    
       display: block; 
+      position: absolute;
+    }
+    .nav input{
+      width: 100%;
     }
     .nav-button {
+      position: relative;
       margin: 4rem 0; 
       width: 100%;
       z-index: 100;
-      display: block; 
+     
+    }
+    .nav-button button{
+      background-color: rgb(1, 99, 160);
+      box-shadow: 0 0 10px gray;
+      color: white;
+      font-weight: bold;
+
     }
    .pagination {
      flex-direction: row; 
