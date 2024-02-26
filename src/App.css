@@ -71,6 +71,10 @@
    box-shadow:0 0 2px rgb(196, 196, 196) ;
    font-size: 12px;
 }
+.nav-button button:hover{
+  background-color: rgb(62, 172, 255);
+  color: white;
+}
 .main-table {
    width: 100%; /* Ensure the table takes up full width */
    max-width: 100%; /* Ensure the table does not exceed the container width */
@@ -255,6 +259,7 @@ img{
       font-weight: bold;
       font-size: 7px;
     }
+   
    .pagination {
      flex-direction: row; 
      align-items: center;
