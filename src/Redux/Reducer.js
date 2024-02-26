@@ -1,6 +1,7 @@
 // Modify reducers.js
 import { TOGGLE_COLUMN_VISIBILITY } from "./Action";
-
+import { SET_AGE_RANGE_FILTER } from "./Action";
+import { CLEAR_AGE_RANGE_FILTER } from "./Action";
 // Retrieve columnsVisibility state from localStorage, if available
 const persistedColumnsVisibility = JSON.parse(localStorage.getItem("columnsVisibility"));
 
@@ -12,6 +13,7 @@ const initialState = {
     email: true,
     date: true,
   },
+  ageRangeFilter: { minAge: 0, maxAge: 100 },
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -26,6 +28,19 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         columnsVisibility: updatedColumnsVisibility,
+      };
+      case SET_AGE_RANGE_FILTER:
+        return {
+          ...state,
+          ageRangeFilter: {
+            minAge: action.payload.minAge,
+            maxAge: action.payload.maxAge,
+          },
+        };
+        case CLEAR_AGE_RANGE_FILTER:
+      return {
+        ...state,
+        ageRangeFilter: { minAge: 0, maxAge: 100 }, // Reset age range filter to initial values
       };
     default:
       return state;

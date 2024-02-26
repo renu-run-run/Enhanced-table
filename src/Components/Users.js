@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleColumnVisibility } from "../Redux/Action";
+import { toggleColumnVisibility, setAgeRangeFilter, clearAgeRangeFilter } from "../Redux/Action";
 
 const ColumnVisibilityModal = ({ columnsVisibilityprop, toggleColumnVisibility, closeModal }) => {
   const handleChange = (column) => {
@@ -37,6 +37,34 @@ const ColumnVisibilityModal = ({ columnsVisibilityprop, toggleColumnVisibility, 
   );
 };
 
+const AgeRangeModal = ({ applyFilter, closeModal }) => {
+  const [minAge, setMinAge] = useState("");
+  const [maxAge, setMaxAge] = useState("");
+
+  const handleApplyFilter = () => {
+    applyFilter(parseInt(minAge), parseInt(maxAge));
+    closeModal();
+  };
+
+  return (
+    <div className="modal">
+      <div className="modal-content">
+        <span className="close" onClick={closeModal}>&times;</span>
+        <h4>Filter by Age Range</h4>
+        <div>
+          <label>Minimum Age:</label>
+          <input type="number" value={minAge} onChange={(e) => setMinAge(e.target.value)} />
+        </div>
+        <div>
+          <label>Maximum Age:</label>
+          <input type="number" value={maxAge} onChange={(e) => setMaxAge(e.target.value)} />
+        </div>
+        <button onClick={handleApplyFilter}>Apply Filter</button>
+      </div>
+    </div>
+  );
+};
+
 
 
 
@@ -46,47 +74,16 @@ const Users = () => {
    const [page, setPage] = useState(2);
    const [isAscending, setIsAscending ] = useState(true);
   const [showModal, setShowModal] = useState(false);
-
+  const [showAgeRangeModal, setShowAgeRangeModal] = useState(false);
 
   const dispatch = useDispatch();
   const columnsVisibility = useSelector((state) => state.columnsVisibility);
- 
-    // const toggleColumnVisibility = (column) => {
-    //   dispatch(toggleColumnVisibility(column));
-    // };
- 
-    // useEffect(() => {
-    //   // Get columnsVisibility from local storage
-    //   let persistedColumnsVisibility = JSON.parse(localStorage.getItem("columnsVisibility"));
+  const ageRangeFilter = useSelector((state) => state.ageRangeFilter);
     
-    //   // Check if persistedColumnsVisibility is null or undefined
-    //   if (!persistedColumnsVisibility) {
-    //     // If not present, initialize it with default values
-    //     persistedColumnsVisibility = {
-    //       photo: true,
-    //       name: true,
-    //       age: true,
-    //       email: true,
-    //       register_date: true, // Add register_date column
-    //     };
-    
-    //     // Save the initialized columnsVisibility to local storage
-    //     localStorage.setItem("columnsVisibility", JSON.stringify(persistedColumnsVisibility));
-    //   } else {
-    //     // If "register_date" column is missing, add it
-    //     if (!persistedColumnsVisibility.hasOwnProperty("register_date")) {
-    //       persistedColumnsVisibility["register_date"] = true;
-    
-    //       // Update local storage with the added "register_date" column
-    //       localStorage.setItem("columnsVisibility", JSON.stringify(persistedColumnsVisibility));
-    //     }
-    //   }
-    
-    //   // Dispatch action to update Redux state with the modified columnsVisibility
-    //   dispatch({ type: "RENAME_COLUMN", payload: { oldColumnName: "register date", newColumnName: "register_date" } });
-    //   // eslint-disable-next-line
-    // }, []);
-    
+
+  const clearAgeRangeFilterHandler = () => {
+    dispatch(clearAgeRangeFilter()); // Dispatch action to clear age range filter
+  };
     useEffect(() => {
       // Get columnsVisibility from local storage
       let persistedColumnsVisibility = JSON.parse(localStorage.getItem("columnsVisibility"));
@@ -134,33 +131,14 @@ const Users = () => {
       )
    },[]);
 
-  //  const toggleColumnVisibility = (column) => {
-  //   setColumnsVisibility(prevState => ({
-  //     ...prevState,
-  //     [column]: !prevState[column]
-  //   }));
-  // };
+  
 
   const toggleModal = () => {
     setShowModal(!showModal);
   };
-
-//   const exportToExcel = () => {
-//     const dataToExport = userList.map(user => ({
-//        Photo: user.picture.large,
-//        Name: user.name.first,
-//        Age: user.dob.age,
-//        Gender: user.gender,
-//        Email: user.email
-//     }));
-
-//     const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-//     const workbook = XLSX.utils.book_new();
-//     XLSX.utils.book_append_sheet(workbook, worksheet, "User Data");
-
-//     // Export the workbook as an .xlsx file
-//     XLSX.writeFile(workbook, "user_data.xlsx");
-//  };
+  const toggleAgeRangeModal = () => {
+    setShowAgeRangeModal(!showAgeRangeModal);
+  };
 
 const exportToExcel = () => {
 
@@ -170,6 +148,10 @@ const exportToExcel = () => {
         return elem.name.first.toLowerCase().includes(search.trim().toLowerCase());
       }
       return true;
+    }).filter((elem) => {
+      // Apply age range filter
+      const { minAge, maxAge } = ageRangeFilter;
+      return !minAge || !maxAge || (elem.dob.age >= minAge && elem.dob.age <= maxAge);
     })
     .sort((a, b) => {
       return isAscending ? a.dob.age - b.dob.age : b.dob.age - a.dob.age;
@@ -233,6 +215,15 @@ const exportToExcel = () => {
               closeModal={toggleModal}
             />
           )}
+          {showAgeRangeModal && (
+            <AgeRangeModal
+              applyFilter={(minAge, maxAge) => {
+                // Dispatch action to set age range filter in Redux
+                dispatch(setAgeRangeFilter(minAge, maxAge));
+              }}
+              closeModal={toggleAgeRangeModal}
+            />
+          )}
           <div className="nav">
           <div className="nav-input" >
           <input className="main-input" type="text" placeholder="Search by name or email " onChange={(e) => setSearch(e.target.value)}/> 
@@ -241,6 +232,8 @@ const exportToExcel = () => {
       <div className="nav-button">
       <button onClick={()=>setIsAscending(!isAscending)}> {isAscending ? "Descending order" : " Ascending order"} </button>
       <button onClick={toggleModal}>Column Visibility</button>
+      <button onClick={toggleAgeRangeModal}>Filter by Age </button>
+      <button onClick={clearAgeRangeFilterHandler}>Clear Age Filter</button>
       <button onClick={exportToExcel}>Export to Excel</button>
       </div>
       
@@ -273,6 +266,9 @@ const exportToExcel = () => {
             }else if( elem.name.first.includes(search)|| elem.email.includes(search)){
               return elem.name.first
             }
+          }).filter((elem) => {
+            const { minAge, maxAge } = ageRangeFilter;
+            return !minAge || !maxAge || (elem.dob.age >= minAge && elem.dob.age <= maxAge);
           }).sort((a,b)=> {
              if(isAscending){
               return  a.dob.age - b.dob.age
