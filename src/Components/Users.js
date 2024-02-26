@@ -85,41 +85,39 @@ const Users = () => {
     dispatch(clearAgeRangeFilter()); // Dispatch action to clear age range filter
   };
     useEffect(() => {
-      // Get columnsVisibility from local storage
-      let persistedColumnsVisibility = JSON.parse(localStorage.getItem("columnsVisibility"));
     
-      // Remove "gender" column if present
+      let persistedColumnsVisibility = JSON.parse(localStorage.getItem("columnsVisibility"));
+   
       if (persistedColumnsVisibility && persistedColumnsVisibility.hasOwnProperty("gender")) {
         delete persistedColumnsVisibility["gender"];
         localStorage.setItem("columnsVisibility", JSON.stringify(persistedColumnsVisibility));
       }
     
-      // Check if persistedColumnsVisibility is null or undefined
+ 
       if (!persistedColumnsVisibility) {
-        // If not present, initialize it with default values
+     
         persistedColumnsVisibility = {
           photo: true,
           name: true,
           age: true,
           email: true,
-          register_date: true, // Add register_date column
+          register_date: true,
         };
     
-        // Save the initialized columnsVisibility to local storage
         localStorage.setItem("columnsVisibility", JSON.stringify(persistedColumnsVisibility));
       } else {
-        // If "register_date" column is missing, add it
+       
         if (!persistedColumnsVisibility.hasOwnProperty("register_date")) {
           persistedColumnsVisibility["register_date"] = true;
     
-          // Update local storage with the added "register_date" column
+      
           localStorage.setItem("columnsVisibility", JSON.stringify(persistedColumnsVisibility));
         }
       }
     
-      // Dispatch action to update Redux state with the modified columnsVisibility
+
       dispatch({ type: "RENAME_COLUMN", payload: { oldColumnName: "register date", newColumnName: "register_date" } });
-      // eslint-disable-next-line
+
     }, []);
     
    useEffect(()=>{
@@ -295,7 +293,7 @@ const exportToExcel = () => {
                     <p>{elem.email}</p>
                     </td>}
                     {columnsVisibility.register_date && <td className="p-3">
-                    <p>{new Date(elem.registered.date).toLocaleString()}</p>
+                    <p>{new Date(elem.registered.date).getFullYear().toLocaleString()}</p>
                     </td>}
 
                   </tr>
