@@ -155,7 +155,7 @@ img{
  
  @media screen and (max-width: 1025px) {
    .main{
-      width: 90%;
+      width: 100%;
    }
    table, thead, tbody, th, td, tr {
      display: block;
@@ -248,7 +248,7 @@ img{
       background-color: rgb(221, 232, 243);
       padding: 0.5rem;
       position: absolute;
-      margin: 30px 5% 0 5%; 
+      margin:  30% 5% 0 5%;
       top: 0;
       right: 0;
       z-index: 1000;
@@ -259,7 +259,7 @@ img{
 
  @media screen and (max-width: 600px) {
    .main{
-      width: 90%;
+      width: 100%;
    }
    table, thead, tbody, th, td, tr {
      display: block;
@@ -346,7 +346,7 @@ img{
       background-color: rgb(221, 232, 243);
       padding: 0.5rem;
       position: absolute;
-      margin: 30px 5% 0 5%; 
+      margin:  30% 5% 0 5%; 
       top: 0;
       right: 0;
       z-index: 1000;
