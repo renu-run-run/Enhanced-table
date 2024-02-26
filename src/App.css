@@ -218,6 +218,11 @@ img{
     .nav input{
       width: 100%;
     }
+    .customer img{
+      margin: 0.5rem;
+      outline: 3px solid rgb(0, 149, 255);
+      outline-offset: 4px;
+    }
     .nav-button {
       position: relative;
       margin: 4rem 0; 
