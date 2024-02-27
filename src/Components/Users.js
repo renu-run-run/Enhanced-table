@@ -73,17 +73,17 @@ const Users = () => {
    const [search, setSearch] = useState([]);
    const [page, setPage] = useState(2);
    const [isAscending, setIsAscending ] = useState(true);
-  const [showModal, setShowModal] = useState(false);
-  const [showAgeRangeModal, setShowAgeRangeModal] = useState(false);
+   const [showModal, setShowModal] = useState(false);
+   const [showAgeRangeModal, setShowAgeRangeModal] = useState(false);
 
-  const dispatch = useDispatch();
-  const columnsVisibility = useSelector((state) => state.columnsVisibility);
-  const ageRangeFilter = useSelector((state) => state.ageRangeFilter);
-    
+   const dispatch = useDispatch();
+   const columnsVisibility = useSelector((state) => state.columnsVisibility);
+   const ageRangeFilter = useSelector((state) => state.ageRangeFilter);
+      
 
-  const clearAgeRangeFilterHandler = () => {
-    dispatch(clearAgeRangeFilter()); // Dispatch action to clear age range filter
-  };
+    const clearAgeRangeFilterHandler = () => {
+      dispatch(clearAgeRangeFilter()); // Dispatch action to clear age range filter
+    };
     useEffect(() => {
     
       let persistedColumnsVisibility = JSON.parse(localStorage.getItem("columnsVisibility"));
@@ -147,7 +147,6 @@ const exportToExcel = () => {
       }
       return true;
     }).filter((elem) => {
-      // Apply age range filter
       const { minAge, maxAge } = ageRangeFilter;
       return !minAge || !maxAge || (elem.dob.age >= minAge && elem.dob.age <= maxAge);
     })
@@ -228,11 +227,11 @@ const exportToExcel = () => {
           </div>
       
       <div className="nav-button">
-      <button onClick={()=>setIsAscending(!isAscending)}> {isAscending ? "Descending order" : " Ascending order"} </button>
-      <button onClick={toggleModal}>Column Visibility</button>
-      <button onClick={toggleAgeRangeModal}>Filter</button>
-      <button onClick={clearAgeRangeFilterHandler}> Remove age Filter</button>
-      <button onClick={exportToExcel}>Export to Excel</button>
+          <button onClick={()=>setIsAscending(!isAscending)}> {isAscending ? "Descending order" : " Ascending order"} </button>
+          <button onClick={toggleModal}>Column Visibility</button>
+          <button onClick={toggleAgeRangeModal}>Filter</button>
+          <button onClick={clearAgeRangeFilterHandler}> Remove age Filter</button>
+          <button onClick={exportToExcel}>Export to Excel</button>
       </div>
       
       </div>
@@ -243,10 +242,11 @@ const exportToExcel = () => {
                
                 {columnsVisibility.photo && <th className="p-4">Customer</th>}
                 {columnsVisibility.name && <th className="p-4">Name</th>}
-                {columnsVisibility.age && <th className="p-4">Age
-                <span onClick={()=>setIsAscending(!isAscending)} > {isAscending ? "⬇️":"⬆️" }</span>
-                </th>}
-               
+                {
+                  columnsVisibility.age && <th className="p-4">Age
+                    <span onClick={()=>setIsAscending(!isAscending)} > {isAscending ? "⬇️":"⬆️" }</span>
+                    </th>
+                }
                 {columnsVisibility.email && <th className="p-4">Email</th>}
                 {columnsVisibility.register_date && <th className="p-4">Registered Date</th>}
               </tr>
@@ -303,13 +303,13 @@ const exportToExcel = () => {
           </tbody>
         </table>
        
-        {userList.length > 0 && <div className="pagination">
-        <span  onClick={()=> selectPageH(page - 1)} > ⬅️</span>
-        {[...Array(userList.length/4)].map((_,i)=>
-        {return <span className={page === i+1 ? "s":""} onClick={()=> selectPageH(i+1)}>{i+1}&nbsp;</span>})}
-        <span  onClick={()=> selectPageH(page + 1)}> ➡️</span>
-      
-        </div>}
+            {userList.length > 0 && <div className="pagination">
+            <span  onClick={()=> selectPageH(page - 1)} > ⬅️</span>
+            {[...Array(userList.length/4)].map((_,i)=>
+            {return <span className={page === i+1 ? "s":""} onClick={()=> selectPageH(i+1)}>{i+1}&nbsp;</span>})}
+            <span  onClick={()=> selectPageH(page + 1)}> ➡️</span>
+          
+            </div>}
 
         </div>
       
