@@ -25,10 +25,10 @@ const rootReducer = (state = initialState, action) => {
       };
    
       localStorage.setItem("columnsVisibility", JSON.stringify(updatedColumnsVisibility));
-      return {
-        ...state,
-        columnsVisibility: updatedColumnsVisibility,
-      };
+        return {
+          ...state,
+          columnsVisibility: updatedColumnsVisibility,
+        };
     case SET_AGE_RANGE_FILTER:
         return {
           ...state,

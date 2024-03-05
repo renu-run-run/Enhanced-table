@@ -17,3 +17,6 @@ If there are more than 4 users, pagination controls are displayed, allowing user
 
 ## Dynamic Rendering:
  The table dynamically renders data based on user interactions such as search, sorting, and column visibility changes. This ensures that the displayed data always reflects the user's current preferences and actions.
+
+# new RegExp(search).test(elem.name.first) || new RegExp(search).test(elem.email) 
+## ( elem.name.first.includes(search)|| elem.email.includes(search))

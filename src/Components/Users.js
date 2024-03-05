@@ -261,7 +261,7 @@ const exportToExcel = () => {
             if(search === " "){
               return elem
               // eslint-disable-next-line
-            }else if( elem.name.first.includes(search)|| elem.email.includes(search)){
+            }else if(new RegExp(search).test(elem.name.first)){
               return elem.name.first
             }
           }).filter((elem) => {
